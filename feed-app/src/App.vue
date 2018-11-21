@@ -4,8 +4,8 @@
 			:date="new Date(new Date() - 3 * 24 * 60 * 60 * 1000)"
 			displayName="Guy Pierce"
 			image="https://semantic-ui.com/images/avatar/small/justen.jpg"
-			:likes="301"
-			@clickLike="likeClicked"
+			:likes="likes[0]"
+			@clickLike="addLike(0)"
 			@clickProfile="profileClicked"
 		>
 			says hi to
@@ -15,8 +15,8 @@
 			:date="new Date()"
 			displayName="Agent Smith"
 			image="https://semantic-ui.com/images/avatar/small/elliot.jpg"
-			:likes="1"
-			@clickLike="likeClicked"
+			:likes="likes[1]"
+			@clickLike="addLike(1)"
 			@clickProfile="profileClicked"
 		>
 			is now following
@@ -34,11 +34,15 @@ export default {
 	data() {
 		return {
 			message: '',
+			likes: [0, 0],
 		}
 	},
 	methods: {
-		likeClicked() {
-			console.log('Like toggled')
+		addLike(id) {
+			// let tmp = [...this.likes]
+			// tmp[id]++
+			let tmp = this.likes.map((x, i) => (i === id ? x + 1 : x))
+			this.likes = tmp
 		},
 		linkClicked() {
 			console.log('Link clicked')
