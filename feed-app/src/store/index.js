@@ -5,17 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		likes: [0, 0],
-		users: ['Mrs. Derringer', 'you'],
+		events: [
+			{ likes: 0, relatedUser: 'Mrs. Derringer' },
+			{ likes: 0, relatedUser: 'you' },
+		],
 	},
 	mutations: {
-		increment(state, id) {
-			state.likes = state.likes.map((x, i) => (i === id ? x + 1 : x))
+		addLike(state, id) {
+			state.events = state.events.map(function(event, i) {
+				if (i === id) {
+					event.likes++
+				}
+				return event
+			})
 		},
 	},
 	actions: {
-		increment(context) {
-			context.commit('increment')
+		addLike({ commit }, id) {
+			commit('addLike', id)
 		},
 	},
 })

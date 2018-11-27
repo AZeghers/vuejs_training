@@ -4,47 +4,43 @@
       :date="new Date(new Date() - 3 * 24 * 60 * 60 * 1000)"
       displayName="Guy Pierce"
       image="https://semantic-ui.com/images/avatar/small/justen.jpg"
-      :likes="likes[0]"
+      :likes="events[0].likes"
       @clickLike="addLike(0)"
       @clickProfile="profileClicked"
     >
       <!-- display: block -->
       says hi
-      <router-link :to="{ name: 'Profile', params: { user: users[0] } }">{{ users[0] }}</router-link>
+      <router-link
+        :to="{ name: 'Profile', params: { profileUser: events[0].relatedUser } }"
+      >{{ events[0].relatedUser }}</router-link>
     </Event>
     <Event
       :date="new Date()"
       displayName="Agent Smith"
       image="https://semantic-ui.com/images/avatar/small/elliot.jpg"
-      :likes="likes[1]"
+      :likes="events[1].likes"
       @clickLike="addLike(1)"
       @clickProfile="profileClicked"
     >
       <!-- display: block -->
       is now following
-      <router-link :to="{ name: 'Profile', params: { user: users[1] } }">{{ users[1] }}</router-link>
+      <router-link
+        :to="{ name: 'Profile', params: { profileUser: events[1].relatedUser } }"
+      >{{ events[1].relatedUser }}</router-link>
     </Event>
   </div>
 </template>
 
 <script>
 import Event from '../components/Event'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
 	name: 'FeedView',
 	components: { Event },
-	computed: mapState({
-		likes: state => state.likes,
-		users: state => state.users,
-	}),
+	computed: mapState(['events']),
 	methods: {
-		addLike(id) {
-			this.$store.commit('increment', id)
-		},
-		linkClicked() {
-			console.log('Link clicked')
-		},
+		...mapActions(['addLike']),
 		profileClicked() {
 			console.log('User profile clicked')
 		},

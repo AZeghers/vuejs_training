@@ -1,17 +1,16 @@
 <template>
-	<div id="app">
-		<h1>Profile</h1>
-		<h3>{{ user }}</h3>
-	</div>
+  <div id="app">
+    <h1>Profile</h1>
+    <h3 v-text="profileUser"/>
+  </div>
 </template>
 
 <script>
 export default {
 	name: 'Profile',
 	props: {
-		user: {
+		profileUser: {
 			type: String,
-			required: true,
 		},
 	},
 	data() {
