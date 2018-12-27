@@ -26,7 +26,7 @@
 				>
 					<a class="like">
 						<i class="like icon" />
-						{{ likes | plurifyLikefy }}
+						{{ $tc('message.like', likes, {count: likes})}}
 					</a>
 				</div>
 			</div>
@@ -37,8 +37,10 @@
 <script>
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import fr from 'javascript-time-ago/locale/fr'
 
 TimeAgo.addLocale(en)
+TimeAgo.addLocale(fr)
 const timeAgo = new TimeAgo('en-US')
 
 export default {
@@ -59,11 +61,6 @@ export default {
 		likes: {
 			type: Number,
 			required: true,
-		},
-	},
-	filters: {
-		plurifyLikefy(value) {
-			return value === 1 ? `${value} Like` : `${value} Likes`
 		},
 	},
 	methods: {
