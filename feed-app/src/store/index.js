@@ -7,7 +7,7 @@ export default new Vuex.Store({
 	state: {
 		events: [
 			{ likes: 0, relatedUser: 'Mrs. Derringer' },
-			{ likes: 0, relatedUser: 'you' },
+			{ likes: 0, relatedUser: 'Neo' },
 		],
 	},
 	mutations: {

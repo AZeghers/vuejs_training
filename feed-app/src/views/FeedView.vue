@@ -9,7 +9,7 @@
       @clickProfile="profileClicked"
     >
       <!-- display: block -->
-      says hi
+      {{ $t('message.hello') }}
       <router-link
         :to="{ name: 'Profile', params: { profileUser: events[0].relatedUser } }"
       >{{ events[0].relatedUser }}</router-link>
@@ -23,7 +23,7 @@
       @clickProfile="profileClicked"
     >
       <!-- display: block -->
-      is now following
+      {{ $t('message.follow') }}
       <router-link
         :to="{ name: 'Profile', params: { profileUser: events[1].relatedUser } }"
       >{{ events[1].relatedUser }}</router-link>
